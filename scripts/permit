@@ -1,0 +1,2 @@
+echo '**********Please type sudo env "PATH=$PATH" permit*************' 
+find . \( -type d -exec chmod u+rwx,g+rwx,o+rx {} \; -o -type f -exec chmod u+rw,g+rw,o+r {} \; \)

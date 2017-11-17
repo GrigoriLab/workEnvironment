@@ -1,0 +1,21 @@
+#!/bin/bash
+#ANSI_COLOR_RED=\x1b[31m
+#ANSI_COLOR_GREEN=\x1b[32m
+#ANSI_COLOR_YELLOW=\x1b[33m
+#ANSI_COLOR_BLUE=\x1b[34m
+#ANSI_COLOR_MAGENTA=\x1b[35m
+#ANSI_COLOR_CYAN=\x1b[36m
+#ANSI_COLOR_RESET=\x1b[0m
+
+while read x ; do echo $x ; done \
+    | sed -e "s/.*error:.*/\x1b[1;36m&\x1b[0m/" \
+    -e "s/.*Finished building target:.*/\x1b[1;32m&\x1b[0m/" \
+    -e "s/.*Finished building:.*/\x1b[1;34m&\x1b[0m/" \
+    -e "s/.*warning:.*/\x1b[1;36m&\x1b[0m/" \
+    -e "s/^\(.*\)\(required from\)/\x1b[1;36m\1\x1b[0mnote: \2/" \
+    -e "s/^\(.*\)\(In instantiation of\)/\x1b[1;36m\1\x1b[0mnote: \2/" \
+    -e "s/^\(.*\)\(In member\)/\x1b[1;36m\1\x1b[0mnote: \2/" \
+    -e "s/.*In function .*/\x1b[1;33m&\x1b[0m/" \
+    | sed -e "s/error:/\x1b[1;31m&\x1b[1;36m/" \
+    -e "s/warning:/\x1b[1;35m&\x1b[1;36m/" \
+    -e "s/note:/\x1b[1;30m&\x1b[0m/" 
